@@ -19,7 +19,7 @@ body {
 }
 
 /*text styles*/
-.welcome {
+.welcome, .success {
     margin-top: 100px; 
     margin-left: 50px;
     margin-right: 50px;
@@ -29,15 +29,7 @@ body {
     color: #fff;
 }
 
-h2 {
-    margin-top: 100px;
-    margin-left: 50px;
-    margin-right: 50px;
-    text-align: center;
-    font-size: medium;
-    font-family:'Courier New', Courier, monospace;
-    color: #ffffff;
-}
+
 /*button styles*/
 .button-container {
     display: flex;
@@ -68,14 +60,17 @@ h2 {
     cursor: pointer;
 }
 
- /* new code */
+ /* for tables */
 th, td {
     padding: 10px;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
+    color: #fff;
 }
 
 tr {
-    font-size: medium;
-    font-family:'Courier New', Courier, monospace;
+    font-size: 18px;
+    font-family: 'Courier New', Courier, monospace;
     color: #ffffff;
 }
 
@@ -108,7 +103,7 @@ th:nth-child(3), td:nth-child(3) {
 
 .event-name {
     flex: 1; /* Allow event name to take up remaining space */
-} /*new code endds here */
+} 
 
 .signup-button {
     display: block;
@@ -185,37 +180,3 @@ input[type="submit"]:hover {
     background-color: #45a049;
 }
 
-/* Basic styling for list of events 
-       
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-li {
-    margin-bottom: 20px;
-}
-.event {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 5px;
-}
-.signup-button {
-    display: block;
-    width: 100%;
-    padding: 10px 20px;
-    margin-top: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-}
-.signup-button:hover {
-    background-color: #45a049;
-}
-*/

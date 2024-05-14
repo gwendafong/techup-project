@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const { v4: uuidv4 } = require('uuid');
 const app = express();
 const port = 3000;
 
@@ -30,14 +31,21 @@ app.get('/events', (req, res) => {
 
 // Handle form submission
 app.post('/submit', (req, res) => {
-    const { event_name, event_description, event_date, event_location, organizer_name, organizer_email } = req.body;
+    const { event_name, event_description, event_date, event_time, event_location, organizer_name, organizer_email, max_capacity } = req.body;
 
     // Validate form data
-    if (!event_name || !event_description || !event_date || !event_location || !organizer_name || !organizer_email) {
+    if (!event_name || !event_description || !event_date || !event_time || !event_location || !organizer_name || !organizer_email) {
         return res.send('Please fill all fields');
     }
+
+    // Set max capacity to 1000 if not provided
+    const capacity = max_capacity ? max_capacity : 1000;
+
+    // Generate a unique event ID
+    const eventId = uuidv4();
+
     // Format event data
-    const eventData = `${event_name} // ${event_description} // ${event_date} // ${event_location} // ${organizer_name} // ${organizer_email}\n`;
+    const eventData = `${eventId} // ${event_name} // ${event_description} // ${event_date} // ${event_time} // ${event_location} // ${organizer_name} // ${organizer_email} // ${capacity}\n`;
 
     // Append event data to a text file
     const file = path.join(__dirname, 'events.txt');
@@ -45,8 +53,13 @@ app.post('/submit', (req, res) => {
         if (err) {
             return res.send('Error while saving event data');
         }
-        res.redirect('/success.html');
+        
     });
+    
+    // Create signup.txt if not exists and append event ID and max capacity
+    const signupFile = path.join(__dirname, 'signup.txt');
+    fs.appendFileSync(signupFile, `${eventId} // ${capacity}\n`);
+    res.redirect('/success.html');
 });
 
 app.listen(port, () => {

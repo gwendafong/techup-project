@@ -1,9 +1,6 @@
-event1 // asdf // 2024-05-18 // home // me // sdg@gmail.com
-event 2 this should not show // gwer  // 2024-05-04 // office // me againt // sdg@gmail.com
-event 3 // tennis // 2024-05-21 // at the courts // friend // lkajsd@gmail.com
-sdf // asdf // 2024-05-20 // set // test // sdg@gmail.com
-event 4 // asdf // 2024-05-22 // sdg // test // lkajsd@gmail.com
-event 5 this should not show // wer // 2024-04-29 // dfg // asfadsf // sdg@gmail.com
-sdf // xd // 2024-05-30 // test // set // sdg@gmail.com
-event 6 // bowling // 2024-05-24 // sdg // test // sdfsdf@gmail.com
-running // easy run around Marina Bay // 2024-06-01 // marina bay // me // lkajsd@gmail.com
+aac4fd94-43b9-433e-94c4-897f519fab42 // event 1 // Running // 2024-05-17 // 18:20 // start at office // me // lkajsd@gmail.com // 1000
+2ecbf675-c1f3-42f1-82a7-09e0e59693ed // event2 This should not show // bowling // 2024-05-01 // 15:20 // test // asfadsf // sdg@gmail.com // 20
+5784df3a-47c1-40d2-a89b-2efa836aabc1 // event 3 // tennis // 2024-05-31 // 20:30 // tennis courts // asfadsf // sdfsdf@gmail.com // 1000
+230e3b58-9e81-4a5b-bd10-96748aef1658 // event4 // wine and dine // 2024-05-24 // 19:30 // pantry // rec club // sdg@gmail.com // 40
+1c2ea9f8-4b0c-4b69-926e-752d4245717c // event5 // yoga // 2024-06-08 // 08:25 // atrium // somebody // somebody@gmail.com // 15
+f1f9c17c-68e2-4c69-9588-87bc34de0bf1 // this should not show // anything goes // 2024-04-10 // 05:23 // sdg // sdg // lkajsd@gmail.com // 1000

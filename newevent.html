@@ -8,25 +8,32 @@
 </head>
 <body>
     <div class="container">
-        <h1>Create Event</h1>
+        <br>
+        <h2>Feel free to suggest any sort of fun activity that you would like to open to fellow MDDI colleagues! Examples of fun activities could be a fun run after work, Fri-yay drinks (BYOB), lunch-time yoga, or even ping pong in the staff lounge! It's a great opportunity to have some fun while getting to know your fellow colleagues.</h2><br>
         <form action="/submit" method="post">
-            <label for="event_name">Event Name:</label>
+            <label for="event_name">Activity:</label>
             <input type="text" id="event_name" name="event_name" required><br>
             
-            <label for="event_description">Event Description:</label>
+            <label for="event_description">Brief Description:</label>
             <input type="text" id="event_description" name="event_description" required><br>
             
-            <label for="event_date">Event Date:</label>
+            <label for="event_date">Date:</label>
             <input type="date" id="event_date" name="event_date" required><br>
+
+            <label for="event_time">Time:</label>
+            <input type="time" id="event_time" name="event_time" required><br>
         
-            <label for="event_location">Event Location:</label>
+            <label for="event_location">Meeting location:</label>
             <input type="text" id="event_location" name="event_location" required><br>
         
-            <label for="organizer_name">Organizer Name:</label>
+            <label for="organizer_name">Organised By:</label>
             <input type="text" id="organizer_name" name="organizer_name" required><br>
         
-            <label for="organizer_email">Organizer Email:</label>
+            <label for="organizer_email">Organiser Email:</label>
             <input type="email" id="organizer_email" name="organizer_email" required><br>
+
+            <label for="max_capacity">Max Capacity (if any):</label>
+            <input type="number" id="max_capacity" name="max_capacity"><br><br>
         
             <input type="submit" value="Submit">
         </form>
