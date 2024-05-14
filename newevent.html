@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" >
+    <title>DunSayBoJio</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Create Event</h1>
+        <form action="/submit" method="post">
+            <label for="event_name">Event Name:</label>
+            <input type="text" id="event_name" name="event_name" required><br>
+            
+            <label for="event_description">Event Description:</label>
+            <input type="text" id="event_description" name="event_description" required><br>
+            
+            <label for="event_date">Event Date:</label>
+            <input type="date" id="event_date" name="event_date" required><br>
+        
+            <label for="event_location">Event Location:</label>
+            <input type="text" id="event_location" name="event_location" required><br>
+        
+            <label for="organizer_name">Organizer Name:</label>
+            <input type="text" id="organizer_name" name="organizer_name" required><br>
+        
+            <label for="organizer_email">Organizer Email:</label>
+            <input type="email" id="organizer_email" name="organizer_email" required><br>
+        
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    
+    <div class="button-container">
+        <a href="index.html"><button>Home</button></a>
+    </div>
+</body>
+</html>

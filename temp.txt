@@ -1,0 +1,21 @@
+// Function to handle signing up for an event
+//function signUpForEvent(eventName) {
+//    fetch('/signup', {
+//        method: 'POST',
+//        headers: {
+//            'Content-Type': 'application/json',
+//        },
+//        body: JSON.stringify({ event: eventName }),
+//    })
+//    .then(response => {
+//        if (response.ok) {
+//            alert('You signed up for ' + eventName);
+//        } else {
+//            throw new Error('Failed to sign up');
+//        }
+//    })
+//    .catch(error => {
+//        console.error('Error signing up:', error);
+//        alert('Failed to sign up. Please try again later.');
+//    });
+//}

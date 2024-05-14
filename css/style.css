@@ -1,0 +1,221 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family:'Courier New', Courier, monospace;
+    background-color: #243453;
+}
+
+/*logo styles*/
+.logo img {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+/*text styles*/
+.welcome {
+    margin-top: 100px; 
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    font-size: small;
+    font-family:'Courier New', Courier, monospace;
+    color: #fff;
+}
+
+h2 {
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    text-align: center;
+    font-size: medium;
+    font-family:'Courier New', Courier, monospace;
+    color: #ffffff;
+}
+/*button styles*/
+.button-container {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    margin-top: 50px;
+}
+.button-container button {
+    padding: 15px 30px; /* Adjust button size */
+    font-size: 18px; /* Adjust font size */
+    line-height: 1; /* Align text vertically */
+    background-color: #839af4;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button {
+    padding: 15px 30px; /* Adjust button size */
+    font-size: 18px; /* Adjust font size */
+    line-height: 1; /* Align text vertically */
+    background-color: #839af4;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+ /* new code */
+th, td {
+    padding: 10px;
+}
+
+tr {
+    font-size: medium;
+    font-family:'Courier New', Courier, monospace;
+    color: #ffffff;
+}
+
+th:first-child, td:first-child {
+    width: 40%; /* Adjust width of the event name column */
+}
+
+th:nth-child(2), td:nth-child(2) {
+    width: 30%; /* Adjust width of the date column */
+}
+
+th:nth-child(3), td:nth-child(3) {
+    width: 30%; /* Adjust width of the signup button column */
+}
+
+#eventsList {
+    list-style: none;
+    padding: 0;
+    font-size: large;
+    font-family:'Courier New', Courier, monospace;
+    color: #ffffff;
+}
+
+.event-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px; /* Adjust spacing between list items */
+}
+
+.event-name {
+    flex: 1; /* Allow event name to take up remaining space */
+} /*new code endds here */
+
+.signup-button {
+    display: block;
+    width: 20%;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #839af4;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+/* Container styles */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #243453;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    font-size: medium;
+    font-family:'Courier New', Courier, monospace;
+    color: #fff;
+}
+
+/* List styles */
+#eventsList {
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: #243453;
+    text-align: left;
+    font-size: medium;
+    font-family:'Courier New', Courier, monospace;
+    color: #fff;
+}
+
+/* Form styles */
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Basic styling for list of events 
+       
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+li {
+    margin-bottom: 20px;
+}
+.event {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+.signup-button {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+.signup-button:hover {
+    background-color: #45a049;
+}
+*/
