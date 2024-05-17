@@ -65,9 +65,45 @@ function getEventDetails(eventId) {
     .catch(error => console.error('Error retrieving event details:', error));
 }
 
+function signUp(eventId, username) {
+  
+        fetch('/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ eventId: eventId, username: username })
+        })
+        .then(response => {
+            if (response.ok) {
+                console.log("User signed up successfully for event:", eventId);
+            } else {
+                console.error("Failed to sign up:", response.statusText);
+            }
+        })
+        .catch(error => {
+            console.error("Error signing up:", error);
+        });
+
+}
+
+function getUserName() {
+    var username = prompt("Please enter your name:");
+    if (username) {
+        signUp(getEventIdFromURL(), username);
+    } else {
+        console.error("Username is empty or canceled.");
+    }
+   
+}
+
 const eventId = getEventIdFromURL();
 if (eventId) {
     getEventDetails(eventId);
 } else {
     console.error("EventId not found in the URL");
 }
+
+// Add event listener to signup button
+// const signUpButton = document.getElementById('signUpButton');
+// signUpButton.addEventListener('click', getUserName);

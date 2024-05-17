@@ -3,11 +3,13 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const signupRouter = require('./signup'); //to import signup functionality
 const app = express();
 const port = 3000;
 
 // Middleware to parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Setting up Express for static files
 app.use(express.static(__dirname));
@@ -61,6 +63,9 @@ app.post('/submit', (req, res) => {
     fs.appendFileSync(signupFile, `${eventId} // ${capacity}\n`);
     res.redirect('/success.html');
 });
+
+// Use the signup router
+app.use('/signup', signupRouter);
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);

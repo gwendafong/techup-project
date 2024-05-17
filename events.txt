@@ -4,3 +4,4 @@ aac4fd94-43b9-433e-94c4-897f519fab42 // event 1 // Running // 2024-05-17 // 18:2
 230e3b58-9e81-4a5b-bd10-96748aef1658 // event4 // wine and dine // 2024-05-24 // 19:30 // pantry // rec club // sdg@gmail.com // 40
 1c2ea9f8-4b0c-4b69-926e-752d4245717c // event5 // yoga // 2024-06-08 // 08:25 // atrium // somebody // somebody@gmail.com // 15
 f1f9c17c-68e2-4c69-9588-87bc34de0bf1 // this should not show // anything goes // 2024-04-10 // 05:23 // sdg // sdg // lkajsd@gmail.com // 1000
+70480d49-d3aa-4230-b46c-6f08a51cc897 // walk in the park // let's go for a walk around marina bay after work // 2024-06-05 // 18:00 // ground floor // mike // somebody@gmail.com // 25
