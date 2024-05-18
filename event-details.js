@@ -35,7 +35,11 @@ function getEventDetails(eventId) {
             };
             
             // Populate the table with event details
-            const tableBody = document.getElementById('eventDetails');
+            // const tableBody = document.getElementById('eventDetails');
+            
+            const table = document.getElementById('eventDetails');
+            table.innerHTML = ''; //clear previous content
+
             const addRow = (label, value) => {
                 const row = document.createElement('tr');
                 const labelCell = document.createElement('td');
@@ -46,7 +50,7 @@ function getEventDetails(eventId) {
 
                 row.appendChild(labelCell);
                 row.appendChild(valueCell);
-                tableBody.appendChild(row);
+                table.appendChild(row);
             };
 
             addRow('Name:', eventDetails.name);
@@ -55,28 +59,33 @@ function getEventDetails(eventId) {
             addRow('Time:', eventDetails.time);
             addRow('Location:', eventDetails.location);
             addRow('Organiser:', eventDetails.organiser);
-            addRow("Organiser's Email:", eventDetails.orgEmail);
-            
+            addRow("Organiser's Email: ", eventDetails.orgEmail);
+                
+            getNumParticipants(eventId)
+                .then(numParticipants => {
+                    addRow('Number of people signed up: ', numParticipants);
+                    })
+                    
+
             // Check if max capacity is reached
-            
             maxCapacityReached(eventId)
-                .then(isReached => {
-                    if (isReached) { 
-                        addRow('Status:', 'Max capacity reached');
-                    } else {
-                        // Display sign-up button
-                        const signUpButton = document.createElement('button');
-                        signUpButton.textContent = 'Sign up';
-                        signUpButton.className = 'signup-button';
-                        signUpButton.onclick = () => getUserName();
-                        const actionCell = document.createElement('td');
-                        actionCell.appendChild(signUpButton);
-                        const actionRow = document.createElement('tr');
-                        actionRow.appendChild(document.createElement('td')); // Empty cell for alignment
-                        actionRow.appendChild(actionCell);
-                        tableBody.appendChild(actionRow);
-                    }
-                })
+            .then(isReached => {
+                const actionButtonsContainer = document.getElementById('actionButtons');
+                actionButtonsContainer.innerHTML = ''; // Clear previous content
+                
+                if (isReached) { 
+                    const statusMessage = document.createElement('div');
+                    statusMessage.textContent = 'Sorry, there are no more available slots for this event.';
+                    actionButtonsContainer.appendChild(statusMessage);
+                } else {
+                    // Display sign-up button
+                    const signUpButton = document.createElement('button');
+                    signUpButton.textContent = 'Sign up';
+                    signUpButton.onclick = () => getUserName();
+                    actionButtonsContainer.appendChild(signUpButton);
+                }
+            })
+            .catch(error => console.error('Error checking max capacity:', error));
 
         } else {
             console.log("Event not found");
@@ -109,6 +118,24 @@ function maxCapacityReached(eventId) {
     });
 }
 
+function getNumParticipants (eventId){
+    return fetch('/eventCapacity?eventId=' + eventId)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch event capacity: ' + response.statusText);
+            }
+        })
+        .then(data => {
+            console.log('count: ', data.participants.length);
+            return data.participants.length;
+        })
+        .catch(error => {
+            console.error('Error fetching number of participants:', error);
+            return 0; // Return 0 if there's an error
+        });
+}
 
 function signUp(eventId, username) {
   
