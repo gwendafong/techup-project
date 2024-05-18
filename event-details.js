@@ -56,7 +56,27 @@ function getEventDetails(eventId) {
             addRow('Location:', eventDetails.location);
             addRow('Organiser:', eventDetails.organiser);
             addRow("Organiser's Email:", eventDetails.orgEmail);
-            //addRow('Max Capacity:', eventDetails.maxCapacity);
+            
+            // Check if max capacity is reached
+            
+            maxCapacityReached(eventId)
+                .then(isReached => {
+                    if (isReached) { 
+                        addRow('Status:', 'Max capacity reached');
+                    } else {
+                        // Display sign-up button
+                        const signUpButton = document.createElement('button');
+                        signUpButton.textContent = 'Sign up';
+                        signUpButton.className = 'signup-button';
+                        signUpButton.onclick = () => getUserName();
+                        const actionCell = document.createElement('td');
+                        actionCell.appendChild(signUpButton);
+                        const actionRow = document.createElement('tr');
+                        actionRow.appendChild(document.createElement('td')); // Empty cell for alignment
+                        actionRow.appendChild(actionCell);
+                        tableBody.appendChild(actionRow);
+                    }
+                })
 
         } else {
             console.log("Event not found");
@@ -64,6 +84,31 @@ function getEventDetails(eventId) {
     })
     .catch(error => console.error('Error retrieving event details:', error));
 }
+
+function maxCapacityReached(eventId) {
+    return new Promise((resolve, reject) => {
+        fetch('/eventCapacity?eventId=' + eventId)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch event capacity: ' + response.statusText);
+                }
+            })
+            .then(data => {
+                const maxCapacity = data.capacity;
+
+                // Check if max capacity has been reached
+                const isMaxCapacityReached = data.participants.length >= maxCapacity;
+                resolve(isMaxCapacityReached);
+            })
+            .catch(error => {
+                console.error('Error fetching event capacity:', error);
+                reject(error);
+            });
+    });
+}
+
 
 function signUp(eventId, username) {
   

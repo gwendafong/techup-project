@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
-const signupRouter = require('./signup'); //to import signup functionality
+const routes = require('./routes'); //to import signup functionality
 const app = express();
 const port = 3000;
 
@@ -65,7 +65,7 @@ app.post('/submit', (req, res) => {
 });
 
 // Use the signup router
-app.use('/signup', signupRouter);
+app.use('/', routes);
 
 app.listen(port, () => {
     console.log(`Server is listening on port ${port}`);

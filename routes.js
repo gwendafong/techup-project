@@ -3,8 +3,45 @@ const fs = require('fs');
 
 const router = express.Router();
 
+
+// New endpoint to fetch event capacity
+router.get('/eventCapacity', (req, res) => {
+    const eventId = req.query.eventId;
+
+    // Read the contents of signup.txt
+    fs.readFile('signup.txt', 'utf8', (err, data) => {
+        if (err) {
+            console.error("Error reading signup.txt:", err);
+            res.status(500).send("Error reading signup.txt");
+            return;
+        }
+
+        // Split the data into lines
+        const lines = data.trim().split('\n');
+
+        // Find the line corresponding to the event ID
+        let eventLine;
+        for (const line of lines) {
+            const [event, capacity, ...participants] = line.split(' // ');
+            if (event === eventId) {
+                eventLine = { capacity: parseInt(capacity), participants };
+                break;
+            }
+        }
+
+        // Check if the event line was found
+        if (!eventLine) {
+            console.error("Event ID not found:", eventId);
+            res.status(404).send("Event ID not found");
+            return;
+        }
+
+        res.json({ capacity: eventLine.capacity, participants: eventLine.participants });
+    });
+});
+
 // Handle POST requests to /signup
-router.post('/', (req, res) => {
+router.post('/signup', (req, res) => {
     const { eventId, username } = req.body;
     console.log(req.body)
     if (!eventId || !username) {
@@ -48,5 +85,7 @@ router.post('/', (req, res) => {
         }
     });
 });
+
+
 
 module.exports = router;
