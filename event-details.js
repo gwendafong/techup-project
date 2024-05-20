@@ -40,7 +40,7 @@ function getEventDetails(eventId) {
             const table = document.getElementById('eventDetails');
             table.innerHTML = ''; //clear previous content
 
-            const addRow = (label, value) => {
+            const addRow = (label, value, link=null) => {
                 const row = document.createElement('tr');
                 const labelCell = document.createElement('td');
                 const valueCell = document.createElement('td');
@@ -50,6 +50,14 @@ function getEventDetails(eventId) {
 
                 row.appendChild(labelCell);
                 row.appendChild(valueCell);
+
+                // If a link is provided, append it to the value cell
+                if (link) {
+                    const linkCell = document.createElement('td');
+                    linkCell.appendChild(link);
+                    row.appendChild(linkCell);
+                }
+
                 table.appendChild(row);
             };
 
@@ -63,8 +71,32 @@ function getEventDetails(eventId) {
                 
             getNumParticipants(eventId)
                 .then(numParticipants => {
-                    addRow('Number of people signed up: ', numParticipants);
-                    })
+                    // addRow('Number of people signed up: ', numParticipants); old code
+
+                    // Create a link element; new code starts here
+                    const participantListLink = document.createElement('a');
+                    participantListLink.href = '#'; // Set the href attribute to '#' or the URL to fetch participant list
+                    participantListLink.textContent = 'View Participant List';
+                    participantListLink.classList.add('participant-link');
+
+                    // Add event listener to the link to fetch and display participant list
+                    participantListLink.addEventListener('click', function(event) {
+                        event.preventDefault(); // Prevent default link behavior (e.g., navigation)
+
+                        // Fetch the list of participants for the event
+                        fetchParticipantList(eventId) 
+                        .then(function(participants) {
+                            console.log(participants);
+                            displayParticipantList(participants);
+                        })
+                        .catch(function(error) {
+                        console.error('Error fetching participant list:', error);
+                        });
+                    });
+
+                    // Add the link to the table row
+                    addRow('Number of people signed up: ', numParticipants, participantListLink); //new code ends here
+                })
                     
 
             // Check if max capacity is reached
@@ -82,6 +114,9 @@ function getEventDetails(eventId) {
                     const signUpButton = document.createElement('button');
                     signUpButton.textContent = 'Sign up';
                     signUpButton.onclick = () => getUserName();
+                    /*signUpButton.onclick = () => {
+                        openPopup(); // code to activate pop up form
+                    }*/
                     actionButtonsContainer.appendChild(signUpButton);
                 }
             })
@@ -137,6 +172,34 @@ function getNumParticipants (eventId){
         });
 }
 
+function fetchParticipantList (eventId) {
+    return fetch('/eventCapacity?eventId=' + eventId)
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to fetch participant list: ' + response.statusText);
+            }
+        })
+        .then(data => {
+            return data.participants;
+        })
+        .catch(error => {
+            console.error('Error fetching participants list:', error);
+            return 0; // Return 0 if there's an error
+        });
+}
+
+function displayParticipantList (participants) {
+    let participantInfo = "Here are the list of people who have signed up for this activity:\n";
+    
+    participants.forEach(participant => {
+        participantInfo += `${participant}\n`;
+    });
+    
+    alert(participantInfo);
+}
+
 function signUp(eventId, username) {
   
         fetch('/signup', {
@@ -169,6 +232,17 @@ function getUserName() {
    
 }
 
+/* Function to open the popup form
+function openPopup() {
+    document.getElementById("popupForm").style.display = "block";
+}
+
+// Function to close the popup form
+function closePopup() {
+    document.getElementById("popupForm").style.display = "none";
+}
+*/
+
 const eventId = getEventIdFromURL();
 if (eventId) {
     getEventDetails(eventId);
@@ -176,6 +250,17 @@ if (eventId) {
     console.error("EventId not found in the URL");
 }
 
-// Add event listener to signup button
-// const signUpButton = document.getElementById('signUpButton');
-// signUpButton.addEventListener('click', getUserName);
+/* Function to handle form submission
+document.getElementById("userNameForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+    // Get eventId and username from somewhere (e.g., form inputs)
+    // const eventId = getEventIdFromURL();
+    const username = document.getElementById("usernameInput").value;
+    console.log(eventId, username);
+
+    // Call signUp function with eventId and username
+    signUp(eventId, username);
+    console.log("Form submitted!");
+    closePopup(); // Close the popup form after submission
+});
+*/
