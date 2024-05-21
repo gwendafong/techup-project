@@ -73,7 +73,6 @@ function getEventDetails(eventId) {
                 .then(numParticipants => {
                     // addRow('Number of people signed up: ', numParticipants); old code
 
-                    // Create a link element; new code starts here
                     const participantListLink = document.createElement('a');
                     participantListLink.href = '#'; // Set the href attribute to '#' or the URL to fetch participant list
                     participantListLink.textContent = 'View Participant List';
@@ -95,7 +94,7 @@ function getEventDetails(eventId) {
                     });
 
                     // Add the link to the table row
-                    addRow('Number of people signed up: ', numParticipants, participantListLink); //new code ends here
+                    addRow('Number of people signed up: ', numParticipants, participantListLink); 
                 })
                     
 
@@ -113,10 +112,10 @@ function getEventDetails(eventId) {
                     // Display sign-up button
                     const signUpButton = document.createElement('button');
                     signUpButton.textContent = 'Sign up';
-                    signUpButton.onclick = () => getUserName();
-                    /*signUpButton.onclick = () => {
+                    //signUpButton.onclick = () => getUserName();
+                    signUpButton.onclick = () => {
                         openPopup(); // code to activate pop up form
-                    }*/
+                    }
                     actionButtonsContainer.appendChild(signUpButton);
                 }
             })
@@ -212,6 +211,7 @@ function signUp(eventId, username) {
         .then(response => {
             if (response.ok) {
                 console.log("User signed up successfully for event:", eventId);
+                window.location.reload();
             } else {
                 console.error("Failed to sign up:", response.statusText);
             }
@@ -223,25 +223,45 @@ function signUp(eventId, username) {
 }
 
 function getUserName() {
-    var username = prompt("Please enter your name:");
-    if (username) {
+    var firstName = prompt("Please enter your first name:");
+    var lastName = prompt("Please enter your last name:");
+    
+    if (firstName && lastName) {
+        var username = firstName + " " + lastName;
         signUp(getEventIdFromURL(), username);
     } else {
-        console.error("Username is empty or canceled.");
+        console.error("First name or last name is empty or canceled.");
     }
-   
 }
 
-/* Function to open the popup form
+//Function to open the popup form
 function openPopup() {
+    const eventId = getEventIdFromURL();
     document.getElementById("popupForm").style.display = "block";
+    
+    //Function to handle form submission
+    document.getElementById("userNameForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // Prevent default form submission behavior
+    
+        var firstName = document.getElementById("firstName").value;
+        var lastName = document.getElementById("lastName").value;
+            
+        if (firstName && lastName) {
+            var username = firstName + " " + lastName;
+            console.log (username);
+            signUp(eventId, username);
+        } else {
+            console.error("First name or last name is empty.");
+        }
+        closePopup(); // Close the popup form after submission
+    });
 }
 
 // Function to close the popup form
 function closePopup() {
     document.getElementById("popupForm").style.display = "none";
 }
-*/
+
 
 const eventId = getEventIdFromURL();
 if (eventId) {
@@ -250,17 +270,5 @@ if (eventId) {
     console.error("EventId not found in the URL");
 }
 
-/* Function to handle form submission
-document.getElementById("userNameForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent default form submission behavior
-    // Get eventId and username from somewhere (e.g., form inputs)
-    // const eventId = getEventIdFromURL();
-    const username = document.getElementById("usernameInput").value;
-    console.log(eventId, username);
 
-    // Call signUp function with eventId and username
-    signUp(eventId, username);
-    console.log("Form submitted!");
-    closePopup(); // Close the popup form after submission
-});
-*/
+
