@@ -61,6 +61,20 @@ body {
     cursor: pointer;
 }
 
+#createEventButton {
+    display: block; /* Make the button a block-level element */
+    margin: 0 auto; /* Auto horizontal margin centers the button */
+    padding: 15px 30px; /* Adjust button size */
+    font-size: 18px; /* Adjust font size */
+    line-height: 1; /* Align text vertically */
+    background-color: #839af4;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 .participant-link {
     color: white; 
     text-decoration: underline; /* Add underline */

@@ -25,7 +25,7 @@ fetch('/events')
         eventsListMessage.innerHTML = 'There are no upcoming activities. Be the first to create a new one!';
         const createEventButton = document.createElement('button');
         createEventButton.textContent = 'Jio others to do something fun';
-        createEventButton.classList.add('button');
+        createEventButton.setAttribute('id', 'createEventButton'); 
         createEventButton.addEventListener('click', function() {
             // Redirect to the page to create a new event
             window.location.href = 'newevent.html';

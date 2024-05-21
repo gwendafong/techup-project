@@ -35,7 +35,6 @@ function getEventDetails(eventId) {
             };
             
             // Populate the table with event details
-            // const tableBody = document.getElementById('eventDetails');
             
             const table = document.getElementById('eventDetails');
             table.innerHTML = ''; //clear previous content
@@ -71,8 +70,6 @@ function getEventDetails(eventId) {
                 
             getNumParticipants(eventId)
                 .then(numParticipants => {
-                    // addRow('Number of people signed up: ', numParticipants); old code
-
                     const participantListLink = document.createElement('a');
                     participantListLink.href = '#'; // Set the href attribute to '#' or the URL to fetch participant list
                     participantListLink.textContent = 'View Participant List';
@@ -113,9 +110,8 @@ function getEventDetails(eventId) {
                     // Display sign-up button
                     const signUpButton = document.createElement('button');
                     signUpButton.textContent = 'Sign up';
-                    //signUpButton.onclick = () => getUserName();
                     signUpButton.onclick = () => {
-                        openPopup(); // code to activate pop up form
+                        openPopup(); 
                     }
                     actionButtonsContainer.appendChild(signUpButton);
                 }
@@ -223,7 +219,7 @@ function signUp(eventId, username) {
 
 }
 
-function getUserName() {
+/*function getUserName() {
     var firstName = prompt("Please enter your first name:");
     var lastName = prompt("Please enter your last name:");
     
@@ -233,7 +229,7 @@ function getUserName() {
     } else {
         console.error("First name or last name is empty or canceled.");
     }
-}
+}*/
 
 //Function to open the popup form
 function openPopup() {
