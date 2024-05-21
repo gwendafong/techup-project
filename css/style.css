@@ -194,11 +194,27 @@ textarea {
 
 /* Popup content */
 .popup-content {
-    background-color: #fefefe;
+    font-family:'Courier New', Courier, monospace;
+    color: #fff;
+    background-color: #243453;
     margin: 10% auto; /* 10% from the top and centered */
     padding: 20px;
-    border: 1px solid #888;
+    border: 10px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+}
+
+button[type="submit"] {
+    /*padding: 10px 20px;*/
+
+    padding: 15px 30px; /* Adjust button size */
+    font-size: 18px; /* Adjust font size */
+    line-height: 1; /* Align text vertically */
+    background-color: #839af4;
+    font-family:'Courier New', Courier, monospace;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 /* Close button */
@@ -215,18 +231,3 @@ textarea {
     text-decoration: none;
     cursor: pointer;
 }
-
-/*
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-input[type="submit"]:hover {
-    background-color: #45a049;
-}
-*/

@@ -107,6 +107,7 @@ function getEventDetails(eventId) {
                 if (isReached) { 
                     const statusMessage = document.createElement('div');
                     statusMessage.textContent = 'Sorry, there are no more available slots for this event.';
+                    statusMessage.style.fontSize = '18px';
                     actionButtonsContainer.appendChild(statusMessage);
                 } else {
                     // Display sign-up button

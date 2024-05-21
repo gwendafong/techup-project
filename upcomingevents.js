@@ -15,11 +15,26 @@ fetch('/events')
 .then(response => response.text())
 .then(data => {
     const eventsList = document.getElementById('eventsList');
+    const eventsListMessage = document.getElementById('eventsListMessage');
     
     // Split the data by newline to get individual events
     const events = data.split('\n').filter(event => event.trim() !== '');
     const currentDate = new Date();
 
+    if (events.length === 0) {
+        eventsListMessage.innerHTML = 'There are no upcoming activities. Be the first to create a new one!';
+        const createEventButton = document.createElement('button');
+        createEventButton.textContent = 'Jio others to do something fun';
+        createEventButton.classList.add('button');
+        createEventButton.addEventListener('click', function() {
+            // Redirect to the page to create a new event
+            window.location.href = 'newevent.html';
+        });
+        eventsList.parentNode.appendChild(createEventButton); // Append the button after the eventsList
+
+    } else {
+        eventsListMessage.innerHTML = 'Here are the upcoming activities! Feel free to sign up for anything that interests you. And jio your friends! The more the merrier.';
+    
      // Parse dates and sort events by date
     const filteredEvents = events.map(event => {
         const [eventId, eventName, eventDescription, eventDate, eventTime, eventLocation, eventOrganiser, eventOrgEmail, maxCapacity] = event.split(' // ');
@@ -63,7 +78,7 @@ fetch('/events')
         row.appendChild(eventDateCell);
         row.appendChild(detailsButtonCell);
         eventsList.appendChild(row);
-    });
+    });}
 
 })
 .catch(error => console.error('Error fetching events:', error));
