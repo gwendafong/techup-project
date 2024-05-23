@@ -30,7 +30,7 @@ fetch('/events')
             // Redirect to the page to create a new event
             window.location.href = 'newevent.html';
         });
-        eventsList.parentNode.appendChild(createEventButton); // Append the button after the eventsList
+        eventsList.parentNode.parentNode.appendChild(createEventButton); // Append the button after the eventsList
 
     } else {
         eventsListMessage.innerHTML = 'Here are the upcoming activities! Feel free to sign up for anything that interests you. And jio your friends! The more the merrier.';

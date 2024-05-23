@@ -30,6 +30,16 @@ body {
     color: #fff;
 }
 
+.disclaimer {
+    margin-top: 100px; 
+    margin-left: 25%;
+    margin-right: 25%;
+    text-align: center;
+    font-size: x-small;
+    font-family:'Courier New', Courier, monospace;
+    color: grey;
+}
+
 
 /*button styles*/
 .button-container {
